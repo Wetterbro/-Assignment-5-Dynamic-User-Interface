@@ -4,6 +4,7 @@ import TaskForm from "@/app/components/taskForm";
 import TaskList from "@/app/components/taskList";
 import { getTasks } from "./components/taskOperations.js";
 import SearchComponent from "@/app/components/SearchComponent";
+import MyCalendar from "./components/Calender.js"
 
 
 export default function Home() {
@@ -47,9 +48,9 @@ fetchTasks();
           setButtonPressed(true);
       }} />
       </section>
-
-       
-        
+      
+       <MyCalendar tasks = {tasks}/>
+      
       <div>
         <TaskList allTasks={tasks} setButtonPressed={setButtonPressed} />
       </div>
