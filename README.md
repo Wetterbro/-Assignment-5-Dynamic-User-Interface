@@ -14,7 +14,6 @@ and then run the development server:
 #to install
 npm Install
 
-
 npm run dev
 # or
 yarn dev
