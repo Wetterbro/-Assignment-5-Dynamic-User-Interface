@@ -11,6 +11,10 @@ First, npm install next.js
 and then run the development server:
 
 ```bash
+#to install
+npm Install
+
+
 npm run dev
 # or
 yarn dev
