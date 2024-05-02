@@ -20,3 +20,15 @@ Task Categorization: Users have the option to categorize tasks based on priority
 Data Storage: Using IndexedDB for storing tasks along with their categories and statuses to ensure persistence across sessions.
 
 Remember User Preferences: cookies is implemented to remember the user's last selected filtering or sorting preferences for tasks, enhancing user experience.
+
+Search Functionality: Users can search for tasks by title, completed status, priority, category, and date, providing comprehensive search capabilities for enhanced task management.
+
+Deadline Management: Tasks now include the ability to add deadlines, facilitating better organization and time management for users.
+
+Calendar Integration: A calendar component is integrated into the system, displaying all tasks visually. Users can click on individual tasks to view additional information, offering a convenient way to manage tasks within the calendar interface.
+
+Lazy Loading: Larger components and images within the system now utilize lazy loading, improving page loading times and overall performance for a smoother user experience.
+
+Tab Navigation: Users can navigate through the system using the tab key, enhancing accessibility and ease of use for keyboard users.
+
+Accessibility Enhancements: Area labels are implemented to improve navigation with screen readers, ensuring that all users, including those with visual impairments, can interact with the system effectively.
