@@ -1,4 +1,3 @@
-
 # Task Management System
 
 A brief description of what this project does and who it's for 
@@ -32,3 +31,4 @@ Lazy Loading: Larger components and images within the system now utilize lazy lo
 Tab Navigation: Users can navigate through the system using the tab key, enhancing accessibility and ease of use for keyboard users.
 
 Accessibility Enhancements: Area labels are implemented to improve navigation with screen readers, ensuring that all users, including those with visual impairments, can interact with the system effectively.
+

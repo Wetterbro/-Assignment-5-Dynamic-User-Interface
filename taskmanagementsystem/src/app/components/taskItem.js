@@ -25,7 +25,7 @@ export default function TaskItem({ id, title, priority, category, message, updat
 
     return (
 
-        <div className=" flex justify-center border rounded-lg bg-white text-center text-surface shadow-secondary-1 mt-5">
+        <div className=" flex justify-center border rounded-lg bg-white text-center text-surface shadow-secondary-1 mt-5" role='listitem'>
             <div className="p-6">
                 <h5 className="mb-1 text-xl font-medium leading-tight overflow-ellipsis  break-words ">
                     {title}
@@ -52,7 +52,8 @@ export default function TaskItem({ id, title, priority, category, message, updat
 
                 <button
                     onClick={() => handleDelete(id)}
-                    className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">
+                    className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 "
+                    aria-label='Delete task'>
                     Delete
                 </button>
 

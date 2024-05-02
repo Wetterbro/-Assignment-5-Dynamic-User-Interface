@@ -10,7 +10,7 @@ const EventDetails = ({ event, onClose }) => {
                 <p className="mb-4">{event.extendedProps.task.message}</p>
                 <p className="text-gray-500">{event.extendedProps.task.deadline}</p>
                 <p className="text-gray-500">Priority: {event.extendedProps.task.priority}</p>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 float-end" onClick={onClose}>Close</button>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 float-end" onClick={onClose} aria-label="Close event details">Close</button>
             </div>
         </div>
     );
