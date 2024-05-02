@@ -87,6 +87,7 @@ export default function TaskList({ allTasks, setButtonPressed }) {
                                                 completed={task.completed}
                                                 priority={task.priority}
                                                 category={task.category}
+                                                deadline={task.deadline}
                                                 updateTasks={setButtonPressed}
                                             />
                                         );

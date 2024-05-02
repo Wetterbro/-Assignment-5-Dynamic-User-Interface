@@ -3,7 +3,7 @@ import TaskForm from './taskForm';
 import { useState } from 'react';
 import { doDBOperations } from './taskOperations';
 
-export default function TaskItem({ id, title, priority, category, message, updateTasks, completed }) {
+export default function TaskItem({ id, title, priority, category, message, updateTasks, completed, deadline }) {
 
     // state to keep track of the checkbox
     const [isChecked, setIsChecked] = useState(completed || false);
@@ -11,7 +11,7 @@ export default function TaskItem({ id, title, priority, category, message, updat
     // Function to handle the checkbox change
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
-        doDBOperations({ id, title, priority, category, message, completed: event.target.checked }, 'update');
+        doDBOperations({ id, title, priority, category, message, completed: event.target.checked, deadline }, 'update');
         updateTasks(true);
     };
 
@@ -39,9 +39,16 @@ export default function TaskItem({ id, title, priority, category, message, updat
                         {message}
                     </p>
                 </div>
-                <p className="mb-4 text-base leading-normal overflow-ellipsis break-words ">
-                    Priority: {priority}
-                </p>
+                <p className="mb-4 text-base leading-normal overflow-ellipsis break-words" style={{ color: 
+                priority === '1' ? 'green' : 
+                priority === '2' ? 'green' : 
+                priority === '3' ? 'orange' : 
+                priority === '4' ? 'red' :
+                priority === '5' ? 'red' :
+                'black' }}>
+                Priority: {priority}
+                 </p>
+
 
                 <button
                     onClick={() => handleDelete(id)}

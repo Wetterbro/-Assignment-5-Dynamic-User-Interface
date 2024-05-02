@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { doDBOperations } from './taskOperations';
+
 
 
 const TaskForm = ({ onFormSubmit }) => {
 
     const [number, setNumber] = useState(1);
     const [addMessage, setAddMessage] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setAddMessage('');
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [addMessage]);
+
+
     // clamp the number between 1 and 5
     const handleNumberChange = (event) => {
         let value = event.target.value;
@@ -29,13 +40,14 @@ const TaskForm = ({ onFormSubmit }) => {
         console.log(titleInput.value.trim());
 
 
-        if (titleInput.value.trim() === '' || 
-        messageInput.value === '' || 
-        categoryInput.value === 'Choose a category' ||
-        priorityInput.value === '' ||
-        dateInput.value === ''
-     ) {
-        setAddMessage('Please fill in all fields');
+        if (titleInput.value.trim() === '' ||
+            messageInput.value === '' ||
+            categoryInput.value === 'Choose a category' ||
+            priorityInput.value === '' ||
+            dateInput.value === ''
+        ) {
+            setAddMessage('Please fill in all fields');
+            setIsSuccess(false);
             return;
         }
 
@@ -51,10 +63,11 @@ const TaskForm = ({ onFormSubmit }) => {
 
         doDBOperations(newTask, 'add');
         setAddMessage('Task added successfully');
+        setIsSuccess(true);
+
         // Clear the form
         titleInput.value = '';
         messageInput.value = '';
-
         onFormSubmit(true);
     };
 
@@ -90,15 +103,19 @@ const TaskForm = ({ onFormSubmit }) => {
                     onChange={handleNumberChange}
                     required />
 
-                    <input type='date' id='dateinput' required>
-                    </input>
+                <label className="block mb-2 text-sm font-medium text-gray-900 mt-4">Select a deadline:</label>
+                <input className='border rounded' type='date' id='dateinput' required>
+                </input>
 
                 <div className="text-right">
                     <button type="submit" className="mt-5 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
                         onClick={handleSubmit}
                     >Add</button>
                 </div>
-                <p>{addMessage}</p>
+
+                <div className={isSuccess ? 'text-green-500' : 'text-red-500'}>
+                    {addMessage}
+                </div>
 
             </form>
         </div>

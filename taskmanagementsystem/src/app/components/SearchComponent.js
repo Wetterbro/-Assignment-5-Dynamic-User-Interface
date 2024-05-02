@@ -20,19 +20,34 @@ export default function SearchComponent({ tasks, setButtonPressed }) {
     }, [tasks, searchTerm]);
 
     function search() {
-        if (searchTerm.startsWith("done:")) {
-            const value = searchTerm.split(":")[1].trim();
-            const isDone = value === "true";
-            return tasks.filter(item => item.completed === isDone);
-        } else if (searchTerm.startsWith("prio:")) {
-            const value = parseInt(searchTerm.split(":")[1].trim(), 10);
-            return tasks.filter(item => parseInt(item.priority, 10) === value);
-        } else if (searchTerm.startsWith("cat:")) {
-            const value = searchTerm.split(":")[1].trim();
-            return tasks.filter(item => item.category === value);
-        }
-        else {
-            return tasks.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        const [prefix, value] = searchTerm.split(":");
+        const trimmedValue = value?.trim();
+
+        switch (prefix) {
+            case "done":
+                const isDone = trimmedValue === "true";
+                return tasks.filter(item => item.completed === isDone);
+            case "prio":
+                const priorityValue = parseInt(trimmedValue, 10);
+                return tasks.filter(item => parseInt(item.priority, 10) === priorityValue);
+            case "cat":
+                return tasks.filter(item => item.category === trimmedValue);
+            case "date":
+                return tasks.filter(item => {
+                    if (item.deadline) {
+                        if (trimmedValue && trimmedValue.includes('-')) {
+                            // If the user entered a year and a month, compare the entire string
+                            return item.deadline.startsWith(trimmedValue);
+                        } else {
+                            // If the user only entered a year, compare the year part of the date
+                            const taskYear = item.deadline.split('-')[0];
+                            return taskYear === trimmedValue;
+                        }
+                    }
+                    return false;
+                });
+            default:
+                return tasks.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
         }
     }
 
@@ -79,7 +94,7 @@ export default function SearchComponent({ tasks, setButtonPressed }) {
                                  onChange={e => setSearchTerm(e.target.value)}
                                  className="w-full border border-gray-300 rounded-md px-4 py-2"/>
 
-                          <IoIosInformationCircleOutline size={32} onClick={toggleInfoBox}/>
+                          <IoIosInformationCircleOutline size={32} onClick={toggleInfoBox} className='float-end'/>
                           {showInfoBox && (
                               <div className="info-box outline outline-2 outline-gray-800 p-5">
                                   <p>
@@ -91,6 +106,7 @@ export default function SearchComponent({ tasks, setButtonPressed }) {
                                       <br/>
                                       <strong>cat: </strong>Search by category
                                       <br/>
+                                    <strong>date: </strong>Search by deadline (yyyy-mm-dd or yyyy-mm or yyyy)
 
                                   </p>
                               </div>
