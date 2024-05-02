@@ -72,7 +72,8 @@ export default function SearchComponent({ tasks, setButtonPressed }) {
       <div>
           <button type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                  className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                  arial-label="Search tasks">  
               Search
           </button>
 
@@ -126,13 +127,15 @@ export default function SearchComponent({ tasks, setButtonPressed }) {
 
                                       <button
                                           onClick={() => handleDelete(item.id)}
-                                          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">
+                                          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 "
+                                          aria-label='Delete task'>
                                           Delete
                                       </button>
 
                                       <input checked={item.completed} onChange={handleCheckboxChange(item)}
                                              id="green-checkbox" type="checkbox" value=""
-                                             className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"/>
+                                             className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
+                                             arial-label="Mark task as done"/>
                                       <label className="ms-2 text-sm font-medium text-gray-900">Done!</label>
                                   </li>
 
